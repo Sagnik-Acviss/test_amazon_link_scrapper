@@ -9,7 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd
 import streamlit as st
 import requests
-from bs4 import BeautifulSoup
+# from bs4 import BeautifulSoup
 
 
 
