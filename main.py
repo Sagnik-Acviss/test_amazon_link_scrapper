@@ -35,6 +35,7 @@ options.add_argument("--headless")
 
 
 def product_url_scrapper(amazon_url, search_string):
+    print("check")
 
     driver = get_driver()
 
