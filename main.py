@@ -15,16 +15,10 @@ import os
 
 
 
-def product_url_scrapper(amazon_url, search_string, chrome_driver_path):
+def product_url_scrapper(amazon_url, search_string):
 
-    # chrome_driver_path =  r"./chromedriver.exe"
-    # if not os.path.exists(chrome_driver_path):
-    #     raise FileNotFoundError(f"Chromedriver not found at {chrome_driver_path}")
-
-    # # Check if the file is executable
-    # if not os.access(chrome_driver_path, os.X_OK):
-    #     raise PermissionError(f"Chromedriver at {chrome_driver_path} is not executable")
-
+    chrome_driver_path =  r"./chromedriver.exe"
+    
 
 
     service = Service(chrome_driver_path)
@@ -79,10 +73,10 @@ def product_url_scrapper(amazon_url, search_string, chrome_driver_path):
 
 
 st.markdown('Get Urls of product from AMAZON')
-chrome_driver_path = st.text_input('chrome_driver_path')
+
 search_string = st.text_input('Enter some text')
 if st.button('scraping'):
-    product_links = product_url_scrapper(amazon_url="https://www.amazon.in/", search_string=search_string, chrome_driver_path =chrome_driver_path)
+    product_links = product_url_scrapper(amazon_url="https://www.amazon.in/", search_string=search_string)
     data = {"product_links": product_links}
     links_data = pd.DataFrame(data)
     st.dataframe(links_data)
