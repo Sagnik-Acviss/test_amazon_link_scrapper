@@ -12,7 +12,43 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd
+from seleniumwire import webdriver
+import time
+import urllib
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import pandas as pd
+import streamlit as st
+import requests
+import os
 
+# from bs4 import BeautifulSoup
+
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.core.os_manager import ChromeType
+
+@st.cache_resource
+def get_driver():
+    return webdriver.Chrome(
+        service=Service(
+            ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
+        ),
+        options=options,
+    )
+
+options = Options()
+options.add_argument("--disable-gpu")
+options.add_argument("--headless")
+options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems
+options.add_argument("--disable-gpu")  # Applicable for non-GPU environments
+options.add_argument("--disable-software-rasterizer")  # Avoid using the GPU entirely
+options.add_argument("--remote-debugging-port=9222")  # Port to avoid potential conflicts
 
 def scrape_amazon_reviews(driver,product_url):
     driver.get(product_url)
@@ -76,6 +112,7 @@ def details_scrapper(dataframe, country_code):
         try:
             print(url)
             print(count,"  ", url)
+            driver = get_driver()
             driver.get(url=url)
 
            #  wait = WebDriverWait(driver, 5)  # 10 seconds timeout
