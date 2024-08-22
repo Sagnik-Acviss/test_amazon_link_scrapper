@@ -16,6 +16,13 @@ import requests
 def product_url_scrapper(amazon_url, search_string):
 
     chrome_driver_path =  r"./chromedriver.exe"
+    if not os.path.exists(chrome_driver_path):
+        raise FileNotFoundError(f"Chromedriver not found at {chrome_driver_path}")
+
+    # Check if the file is executable
+    if not os.access(chrome_driver_path, os.X_OK):
+        raise PermissionError(f"Chromedriver at {chrome_driver_path} is not executable")
+
 
 
     service = Service(chrome_driver_path)
