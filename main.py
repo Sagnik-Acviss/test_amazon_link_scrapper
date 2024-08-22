@@ -30,7 +30,7 @@ def get_driver():
 
 options = Options()
 options.add_argument("--disable-gpu")
-options.add_argument("--headless")
+# options.add_argument("--headless")
 
 
 
@@ -38,9 +38,10 @@ def product_url_scrapper(amazon_url, search_string):
     print("check")
 
     driver = get_driver()
-
+     
 
     driver.get(amazon_url)
+    time.sleep(200)
     driver.find_element(By.XPATH, "//input[@id='twotabsearchtextbox']").send_keys(search_string)
 
     driver.find_element(By.XPATH, "//input[@id='nav-search-submit-button']").click()
