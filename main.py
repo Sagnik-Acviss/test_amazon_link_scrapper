@@ -82,7 +82,7 @@ st.markdown('Get Urls of product from AMAZON')
 chrome_driver_path = st.text_input('chrome_driver_path')
 search_string = st.text_input('Enter some text')
 if st.button('scraping'):
-    product_links = product_url_scrapper(amazon_url="https://www.amazon.in/", search_string=search_string, chrome_driver_path)
+    product_links = product_url_scrapper(amazon_url="https://www.amazon.in/", search_string=search_string, chrome_driver_path =chrome_driver_path)
     data = {"product_links": product_links}
     links_data = pd.DataFrame(data)
     st.dataframe(links_data)
