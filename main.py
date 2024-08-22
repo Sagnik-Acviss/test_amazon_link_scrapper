@@ -15,7 +15,7 @@ import requests
 
 def product_url_scrapper(amazon_url, search_string):
 
-    chrome_driver_path = r"chromedriver.exe"
+    chrome_driver_path =  r"./chromedriver.exe"
 
 
     service = Service(chrome_driver_path)
